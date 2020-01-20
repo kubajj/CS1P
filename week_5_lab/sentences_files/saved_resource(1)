@@ -1,0 +1,32 @@
+
+var ftGUID_3617850="4315D807FFF793";
+var ftConfID_3617850="0";
+var ftParams_3617850="ftx=&fty=&ftadz=&ftscw=&ft_custom=&ftOBA=1&ft_agentEnv=0&ft_referrer=https%3A%2F%2Fwww.lipsum.com%2Ffeed%2Fhtml&ft_section=__83026264015266968221526090134914168730&cachebuster=916645.3677842488";
+var ftKeyword_3617850="";
+var ftCustom_3617850="";
+var ftSection_3617850="__83026264015266968221526090134914168730";
+var ftSegment_3617850="";
+var ftSegmentList_3617850=[];
+var ftRuleMatch_3617850="0";
+var ftTimestamp_3617850="1572006090";
+var ftGeoC2_3617850="uk";
+var ftGeoState_3617850="glg";
+var ftGeoCity_3617850="glasgow";
+var ftISP_3617850="university of glasgow";
+var ftSpeed_3617850="broadband";
+var ftDMA_3617850="826034";
+var ftLong_3617850="-4.28836";
+var ftLat_3617850="55.8717";
+var ftPostal_3617850="g12 8qq";
+var ftTimeZone_3617850="100";
+var ftMobileCarrier_3617850="";
+var ftImp3617850 = {};
+ftImp3617850.privacy = "x";
+ftImp3617850.guidAge = "0";
+ftImp3617850.impID = "F252EEE5-1C5A-B5CD-DA90-AA6E759D473F";
+ftImp3617850.duid = "FT:4315D807FFF793";
+
+ftImp3617850.ft_tpplid = "";
+ftImp3617850.ft_c = {};
+
+document.write('<scr'+'ipt src="https://cdn.flashtalking.com/xre/361/3617850/2787293/js/j-3617850-2787293.js" id="ftscript_m3617850" name="ftscript_m3617850"></scr'+'ipt>');

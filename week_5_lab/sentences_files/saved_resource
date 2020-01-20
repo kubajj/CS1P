@@ -1,0 +1,21 @@
+
+var ftGUID_3758752="4315D807FFF793";
+var ftConfID_3758752="0";
+var ftParams_3758752="ftx=&fty=&ftadz=&ftscw=&ft_custom=&ftOBA=1&ft_agentEnv=0&ft_referrer=https%3A%2F%2Fwww.lipsum.com%2Ffeed%2Fhtml&cachebuster=3370.956021624183";
+var ftKeyword_3758752="";
+var ftCustom_3758752="";
+var ftSection_3758752="";
+var ftSegment_3758752="";
+var ftSegmentList_3758752=[];
+var ftRuleMatch_3758752="0";
+var ftTimestamp_3758752="1572006090";
+var ftImp3758752 = {};
+ftImp3758752.privacy = "x";
+ftImp3758752.guidAge = "0";
+ftImp3758752.impID = "EB73ED3D-B32A-7CE4-AF87-59F07AC981BA";
+ftImp3758752.duid = "FT:4315D807FFF793";
+
+ftImp3758752.ft_tpplid = "";
+ftImp3758752.ft_c = {};
+
+document.write('<scr'+'ipt src="https://cdn.flashtalking.com/xre/375/3758752/2649509/js/j-3758752-2649509.js" id="ftscript_m3758752" name="ftscript_m3758752"></scr'+'ipt>');

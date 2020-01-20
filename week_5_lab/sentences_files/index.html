@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<!-- saved from url=(0054)https://cdn.flashtalking.com/102331/2649509/index.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style></style>
+<meta name="ad.size" content="width=728,height=90">
+<title>Adobe_190327_US_4_EN_LikeABoss_Sign_728x90_HTML5</title>
+    
+<script>
+    // SET THIS STUFF!
+    var clickTag = 'https://www.adobe.com';
+   	var adSize = { width: 728, height: 90, retina: true };
+   	var platform = 'none';
+   	var plugins = [];
+    
+    function clickthrough(exit) {
+	   	try{
+   		   	exportRoot.gotoAndStop('static');
+        }catch(e){}
+        try{
+   		   	Code.cta1.gotoAndStop(0);
+   	   	}catch(e){}
+   	   	
+   	   	myFT.clickTag();
+   	};
+
+    
+</script>
+
+
+<script src="./createjs-2015.11.26.min.js.download"></script>
+<script src="./index.js.download"></script>
+
+<script>
+    var canvas, stage, exportRoot, 
+    hitter, cta1Hitter, cta2Hitter, 
+    anim_container, fnStartAnimation, comp;
+
+    Code = window.Code || {};
+    function init2() {
+        var bd = document.getElementById('body');
+        bd.className = bd.className + (bd.className.length > 0 ? ' ' : '') + 'ctaBehavior'+1;
+        document.getElementById('canvas').setAttribute('width', adSize.width*(adSize.retina ? 2 : 1));
+        document.getElementById('canvas').setAttribute('height', adSize.height*(adSize.retina ? 2 : 1));
+        document.getElementById('hitter').setAttribute('style', 'width:'+adSize.width+'px;height:'+adSize.height+'px;');
+        document.getElementById('canvas').setAttribute('style', 'width:'+adSize.width+'px;height:'+adSize.height+'px;');
+        document.getElementById('animation_container').setAttribute('style', 'width:'+adSize.width+'px;height:'+adSize.height+'px;');
+        var compInterval = setInterval(function(){
+        	try{
+        		for(each in AdobeAn.compositions){
+                    if(each != undefined && each != null && each != ''){
+                        comp = AdobeAn.getComposition(each);
+                        clearInterval(compInterval);
+                        init3();
+                    }
+                }
+        	}catch(e){
+        		// problemo
+        	}
+        }, 10);
+    }
+    function init3(){
+        canvas = document.getElementById("canvas");
+        anim_container = document.getElementById("animation_container");
+        var lib=comp.getLibrary();
+        var loader = new createjs.LoadQueue(false);
+        loader.addEventListener("fileload", function(evt){handleFileLoad(evt,comp)});
+        loader.addEventListener("complete", function(evt){handleComplete(evt,comp)});
+        var lib=comp.getLibrary();
+        loader.loadManifest(lib.properties.manifest);
+
+        
+        hitter = document.getElementById('hitter');
+        cta1Hitter = document.getElementById('cta1Hitter');
+        cta2Hitter = document.getElementById('cta2Hitter');
+        var ctab = 1;
+    	switch(ctab){
+		case 1:
+			hitter.addEventListener('mouseover', overCta);
+	        hitter.addEventListener('mouseout', outCta);
+			break;
+		case 2:
+			cta1Hitter.addEventListener('mouseover', overCta);
+	        cta1Hitter.addEventListener('mouseout', outCta);
+			break;
+		case 3: 
+			hitter.addEventListener('mouseover', overCta);
+	        hitter.addEventListener('mouseout', outCta);
+	        cta2Hitter.addEventListener('mouseover', overCta);
+	        cta2Hitter.addEventListener('mouseout', outCta);
+			break;
+		case 4: 
+			cta1Hitter.addEventListener('mouseover', overCta);
+	        cta1Hitter.addEventListener('mouseout', outCta);
+	        cta2Hitter.addEventListener('mouseover', overCta);
+	        cta2Hitter.addEventListener('mouseout', outCta);
+			break;
+		}
+    }
+    function alog(message){
+        if(console){
+        	if(console.log){
+        		console.log(message);
+        	}
+        }
+    }
+    function handleFileLoad(evt, comp) {
+        var images=comp.getImages();	
+        if (evt && (evt.item.type == "image")) { images[evt.item.id] = evt.result; }	
+    }
+    function handleComplete(evt,comp) {
+        //This function is always called, irrespective of the content. You can use the variable "stage" after it is created in token create_stage.
+        var lib=comp.getLibrary();
+        var ss=comp.getSpriteSheet();
+        var queue = evt.target;
+        var ssMetadata = lib.ssMetadata;
+        for(i=0; i<ssMetadata.length; i++) {
+            ss[ssMetadata[i].name] = new createjs.SpriteSheet( {"images": [queue.getResult(ssMetadata[i].name)], "frames": ssMetadata[i].frames} )
+        }
+        exportRoot = new lib['Adobe_190327_US_4_EN_LikeABoss_Sign_728x90_HTML5']();
+        stage = new lib.Stage(canvas);
+        stage.addChild(exportRoot);	
+        //Registers the "tick" event listener.
+        fnStartAnimation = function() {
+            createjs.Ticker.setFPS(lib.properties.fps);
+            createjs.Ticker.addEventListener("tick", stage);
+        }	    
+        AdobeAn.compositionLoaded(lib.properties.id);
+        fnStartAnimation();
+        
+    }
+
+    Code.showHitters = function(){
+    	var ctab = 1;
+    	switch(ctab){
+    	case 2:
+    		cta1Hitter.classList.remove('gone');
+    		break;
+    	case 3:
+    		cta2Hitter.classList.remove('gone');
+    		break;
+    	case 4:
+    		cta1Hitter.classList.remove('gone');
+    		cta2Hitter.classList.remove('gone');
+    		break;
+    	}
+    };
+    function overCta(evt){
+        var tgt = evt.target;
+        alog(tgt.id);
+        switch(tgt.id){
+            case 'hitter':
+              switch(1){
+                  case 1:
+                  case 3:
+                      Code.cta1.gotoAndPlay('over');
+                      break;
+              }
+                break;
+            case 'cta1Hitter':
+                Code.cta1.gotoAndPlay('over');
+                break;
+            case 'cta2Hitter':
+                Code.cta2.gotoAndPlay('over');
+                break;
+        }
+    }
+    function outCta(evt){
+        var tgt = evt.target;
+        switch(tgt.id){
+            case 'hitter':
+                switch(1){
+                  case 1:
+                  case 3:
+                      Code.cta1.gotoAndPlay('out');
+                      break;
+                }
+                break;
+            case 'cta1Hitter':
+                Code.cta1.gotoAndPlay('out');
+                break;
+            case 'cta2Hitter':
+                Code.cta2.gotoAndPlay('out');
+                break;
+        }
+    }
+    function playAgain(){
+    	exportRoot.gotoAndPlay(1);
+    }
+    function init() {
+   	   	try {
+    		var border = document.getElementById('border');
+            var l = border.getElementsByClassName('left')[0];
+            var r = border.getElementsByClassName('right')[0];
+            var t = border.getElementsByClassName('top')[0];
+            var b = border.getElementsByClassName('bottom')[0];
+            l.style.height = adSize.height + 'px';
+            r.style.height = adSize.height + 'px';
+            t.style.width = adSize.width + 'px';
+            b.style.width = adSize.width + 'px';
+            r.style.left = (adSize.width - 1) + 'px';
+            b.style.top = (adSize.height - 1) + 'px';
+    	}catch(e){}
+   	   	init2();
+   	}
+
+    
+ 	// Class list support
+    if("document"in self){if(!("classList"in document.createElement("_"))||document.createElementNS&&!("classList"in document.createElementNS("http://www.w3.org/2000/svg","g"))){(function(t){"use strict";if(!("Element"in t))return;var e="classList",i="prototype",n=t.Element[i],s=Object,r=String[i].trim||function(){return this.replace(/^\s+|\s+$/g,"")},a=Array[i].indexOf||function(t){var e=0,i=this.length;for(;e<i;e++){if(e in this&&this[e]===t){return e}}return-1},o=function(t,e){this.name=t;this.code=DOMException[t];this.message=e},l=function(t,e){if(e===""){throw new o("SYNTAX_ERR","An invalid or illegal string was specified")}if(/\s/.test(e)){throw new o("INVALID_CHARACTER_ERR","String contains an invalid character")}return a.call(t,e)},c=function(t){var e=r.call(t.getAttribute("class")||""),i=e?e.split(/\s+/):[],n=0,s=i.length;for(;n<s;n++){this.push(i[n])}this._updateClassName=function(){t.setAttribute("class",this.toString())}},u=c[i]=[],f=function(){return new c(this)};o[i]=Error[i];u.item=function(t){return this[t]||null};u.contains=function(t){t+="";return l(this,t)!==-1};u.add=function(){var t=arguments,e=0,i=t.length,n,s=false;do{n=t[e]+"";if(l(this,n)===-1){this.push(n);s=true}}while(++e<i);if(s){this._updateClassName()}};u.remove=function(){var t=arguments,e=0,i=t.length,n,s=false,r;do{n=t[e]+"";r=l(this,n);while(r!==-1){this.splice(r,1);s=true;r=l(this,n)}}while(++e<i);if(s){this._updateClassName()}};u.toggle=function(t,e){t+="";var i=this.contains(t),n=i?e!==true&&"remove":e!==false&&"add";if(n){this[n](t)}if(e===true||e===false){return e}else{return!i}};u.toString=function(){return this.join(" ")};if(s.defineProperty){var h={get:f,enumerable:true,configurable:true};try{s.defineProperty(n,e,h)}catch(d){if(d.number===-2146823252){h.enumerable=false;s.defineProperty(n,e,h)}}}else if(s[i].__defineGetter__){n.__defineGetter__(e,f)}})(self)}else{(function(){"use strict";var t=document.createElement("_");t.classList.add("c1","c2");if(!t.classList.contains("c2")){var e=function(t){var e=DOMTokenList.prototype[t];DOMTokenList.prototype[t]=function(t){var i,n=arguments.length;for(i=0;i<n;i++){t=arguments[i];e.call(this,t)}}};e("add");e("remove")}t.classList.toggle("c3",false);if(t.classList.contains("c3")){var i=DOMTokenList.prototype.toggle;DOMTokenList.prototype.toggle=function(t,e){if(1 in arguments&&!this.contains(t)===!e){return e}else{return i.call(this,t)}}}t=null})()}}
+</script>
+<style>
+html, body {
+	margin: 0;
+	padding: 0;
+}
+#animation_container,
+#canvas {
+	overflow: hidden;
+}
+#canvas {
+	position: absolute;
+}
+#hitter,
+#cta1Hitter,
+#cta2Hitter {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	border: none;
+}
+
+#cta1Hitter {
+	top: 417px;
+    left: 87px;
+    width: 128px;
+    height: 48px;
+}
+#cta2Hitter {
+	top: 260px;
+    left: 176px;
+    width: 115px;
+    height: 25px;
+}
+
+.gone {
+	display: none !important;
+}
+#border {
+	z-index: 10000;
+	overflow: visible;
+	position: absolute;
+    top: 0;
+    left: 0;
+}
+#border div {
+	background-color: #000000;
+	position: absolute;
+}
+#border .left, #border .right {
+	width: 1px;
+}
+#border .top, #border .bottom {
+	height: 1px;
+}
+
+</style>
+</head>
+<body id="body" onload="init();" class="ctaBehavior1">
+	<div id="animation_container" style="width:728px;height:90px;">
+		<canvas id="canvas" width="1456" height="180" style="width:728px;height:90px;"></canvas>
+		<a id="hitter" href="https://cdn.flashtalking.com/102331/2649509/index.html#" onclick="clickthrough();" style="width:728px;height:90px;"><!-- &nbsp --></a>
+		<a id="cta1Hitter" class="gone" href="https://cdn.flashtalking.com/102331/2649509/index.html#" onclick="clickthrough();"><!-- &nbsp --></a>
+		<a id="cta2Hitter" class="gone" href="https://cdn.flashtalking.com/102331/2649509/index.html#" onclick="clickthrough();"><!-- &nbsp --></a>
+	</div>
+	<div id="border"><div class="left" style="height: 90px;"></div><div class="right" style="height: 90px; left: 727px;"></div><div class="top" style="width: 728px;"></div><div class="bottom" style="width: 728px; top: 89px;"></div></div>
+
+<script src="./html5API.js.download"></script>
+
+<div id="ftContainer" style="top: 0px; left: 0px; position: absolute; width: 728px; height: 90px; z-index: 10000000; cursor: pointer;"></div>
+<script>
+   var container = myFT.$('#ftContainer');
+   myFT.applyClickTag(container,1);
+</script>
+
+</body></html>
