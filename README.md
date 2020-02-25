@@ -1,2 +1,4 @@
 # CS1P labs
-This repository was created to store my code from laboratories from my CS1P course at University of Glasgow.
+This is a repository of my soluutions for Programming class at University of Glasgow.
+
+AD 2019-2020
