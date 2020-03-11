@@ -63,6 +63,6 @@ cadButton_to = tkinter.Radiobutton(top,text="CAD",variable=c_to,value=5,command=
 cadButton_to.grid(row=5,column=2)
 
 quitButton = tkinter.Button(top,text="Quit",command=top.destroy)
-quitButton.grid(row=6,column=1)
+quitButton.grid(row=0,column=2)
 
 tkinter.mainloop()
