@@ -63,6 +63,7 @@ def is_further(c,t1,t2): # true if t1 is further than t2 from c
 def nna(list_of_cities):
 	total_distance = 0
 	first = list_of_cities[0][1]
+	bo = list_of_cities[0][0] == "Warsaw"
 	previous = ()
 	if len(list_of_cities) == 2:
 		total_distance = distance(first,list_of_cities[1][1])
