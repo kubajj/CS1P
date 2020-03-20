@@ -4,6 +4,7 @@ class User():
         self.name = name
         self.user_ratings = user_ratings
 
+
 #########################################################################################################################
 
 def read_book_file(file_name):
@@ -94,7 +95,7 @@ def read_user_file(file_name):
 
 
 #########################################################################################################################
-                                      ##### THE MAIN PROGRAM FUNCTION #####
+##### THE MAIN PROGRAM FUNCTION #####
 def the_program():
     import sys
     users = read_user_file("ratings.txt")
@@ -117,7 +118,7 @@ def the_program():
     # if its a new user, call function to create new account
     if is_new:
         print("Creating new user account")
-        new_user,new_user_ratings = get_user_info(users, book)
+        new_user, new_user_ratings = get_user_info(users, book)
         # due to formatting convention used, we save username without capital letters
         new_user = new_user.lower()
         users[new_user] = User(name=new_user, user_ratings=new_user_ratings)
@@ -130,7 +131,7 @@ def the_program():
         # if entered name is not in database, ask user if they want to try again or create a new account
         while user_name.lower() not in users.keys():
             choice = input("We were not able to match your name with any existing record. If you wish to try again,"
-                              "enter 0, if you wish to create new account, enter 1: ")
+                           "enter 0, if you wish to create new account, enter 1: ")
             # checking if users input is valid
             if choice not in "0123456789":
                 choice = input_validator(_input=choice, _type=1)
@@ -156,13 +157,13 @@ def the_program():
     # call the similarity algorithm function
     recommendation_list = similarity_alg(user=user_name, users=users, books=book, authors=authors)
     # printing out the result
-    with open("output.txt","a") as file:
+    with open("output.txt", "a") as file:
         file.write("\nRecomending based on similarity ratings")
         file.write("\n###############################################")
         for user in recommendation_list:
             file.write("\nRecommended by " + user.title() + ": ")
             for recom_books in recommendation_list[user]:
-                for author,book in authors.items():
+                for author, book in authors.items():
                     if recom_books in book:
                         file.write("\n        " + recom_books + " by " + author)
 
@@ -173,14 +174,15 @@ def the_program():
 
 #########################################################################################################################
 
-def similarity_alg(user=None,users=None,books=None,authors=None):
+def similarity_alg(user=None, users=None, books=None, authors=None):
     import sys
     user = user.lower()
     # getting the list of ratings of the user
     r1 = users[user].user_ratings
     similarity_list = []
     # getting number of recommendations from user
-    recommendations = input("Please, enter the number of recommendations (max number {number}): ".format(number=len(books)-1))
+    recommendations = input(
+        "Please, enter the number of recommendations (max number {number}): ".format(number=len(books) - 1))
     # validating user input
     try:
         recommendations = int(recommendations)
@@ -188,7 +190,7 @@ def similarity_alg(user=None,users=None,books=None,authors=None):
         recommendations = input_validator(_input=recommendations, _type=1)
     # validate if recom. number is larger than 0 and smaller then overall number of books
     if recommendations < 0 or recommendations > len(books):
-        print("Recommendation number is too large, please enter number smaller or equal to " + str(len(books)-1))
+        print("Recommendation number is too large, please enter number smaller or equal to " + str(len(books) - 1))
         # ask users to input correct number until he does
         while recommendations < 0 or recommendations > len(books):
             recommendations = input("Incorrect number, please try again: ")
@@ -205,22 +207,22 @@ def similarity_alg(user=None,users=None,books=None,authors=None):
             # getting ratings of the other user
             r2 = users[u].user_ratings
             # iterating over the ziped list of ratings of both users
-            for x,y in zip(r1,r2):
+            for x, y in zip(r1, r2):
                 # calculating the similarity
-                similarity += int(x)*int(y)
+                similarity += int(x) * int(y)
             # appending the result to the list as a (name,rating) tuple
-            similarity_list.append((u,similarity))
+            similarity_list.append((u, similarity))
     # sorting the similarity list based on the similarity number
     similarity_list = sorted(similarity_list, reverse=True, key=lambda x: x[1])
     print("\n")
     # print out similarity
-    with open("output.txt","w") as file:
+    with open("output.txt", "w") as file:
         # reversing the similarity list from the lowest to highest
         # we store result in different variable as we do not want to change similarity list itself due to
         # later implementation
         write_out_list = similarity_list[::-1]
         for e in write_out_list:
-            file.write(user.title() + " similarity with " + e[0].title() + " : " + str(e[1])+"\n")
+            file.write(user.title() + " similarity with " + e[0].title() + " : " + str(e[1]) + "\n")
     # create recommended list to store recommended books
     recommended = {}
     # we will use g to count number of recommended books
@@ -232,14 +234,14 @@ def similarity_alg(user=None,users=None,books=None,authors=None):
         # we then iterate over books rated 3 to recommend and in case there are not enough books we repeat the process
         for rate in rate_list:
             # we iterate over the number of users already in database
-            for k in range(len(users.keys())-1):
+            for k in range(len(users.keys()) - 1):
                 # get recommenders name
                 recommender = similarity_list[k][0]
                 # get rating r1 of recommender and rating r2 of our users to whom we recommend books
                 r1 = users[recommender].user_ratings
                 r2 = users[user].user_ratings
                 # iterate over all the books
-                for i in range(len(books)-1):
+                for i in range(len(books) - 1):
                     # rating1 and rating2 correspond to specific rating in rating list of users and since ratings are in
                     # the same order as books, index of rating corresponds to index of book in books list
                     rating1 = r1[i]
@@ -262,10 +264,9 @@ def similarity_alg(user=None,users=None,books=None,authors=None):
                             return recommended
 
 
-
 #########################################################################################################################
 
-def input_validator(_input,_type):
+def input_validator(_input, _type):
     import sys
     # this function validates user input given _input parameter and desired _type parameter
     # we have separate checking for int and str
@@ -301,7 +302,8 @@ def input_validator(_input,_type):
     # if inout is correct, return it
     return _input
 
-#########################################################################################################################
+
+# ########################################################################################################################
 
 def get_user_info(users, book):
     user_name = input("Please enter your name: ")
@@ -322,7 +324,8 @@ def get_user_info(users, book):
 
     # we call a function to generate ratings for the user
     ratings = get_ratings(book)
-    return user_name,ratings
+    return user_name, ratings
+
 
 #########################################################################################################################
 
@@ -332,7 +335,7 @@ def get_ratings(book):
     ratings = []
     book_number = len(book)
     # getting number representing about 20% of the books
-    choice_number = int((book_number/100)*20)
+    choice_number = int((book_number / 100) * 20)
 
     print("Please rate the following books using this scale: \n")
     print("Rating      Meaning")
@@ -344,13 +347,13 @@ def get_ratings(book):
     print(" 5          Really liked it!")
 
     # we create list to check if rating input is valid
-    rate_list = ['-5','-3','0','1','3','5']
+    rate_list = ['-5', '-3', '0', '1', '3', '5']
     # initializing ratings list with all elements 0 to represent book that haven't been read yet
     rating = [0 for x in range(book_number)]
 
     for i in range(choice_number):
         # we generate random number to pick a book
-        choice = rn.randint(0, book_number-1)
+        choice = rn.randint(0, book_number - 1)
         # we select a book from the list of books
         chosen_book = book[choice]
         # asking for an input
